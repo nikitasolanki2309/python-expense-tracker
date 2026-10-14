@@ -5,7 +5,8 @@ menu = {
     2: "View All Expenses",
     3: "Total Spending",
     4: "Category Analysis",
-    5: "Exit"
+    5: "Highest Expense",
+    6: "Exit"
 }
 
 def expense_tracker():
@@ -75,6 +76,19 @@ def expense_tracker():
                     print(f"{category_name.capitalize()}: ₹{total_amount}")
 
         elif choice == 5:
+            highest_expense = 0
+            highest_expense_details = {}
+            if not expenses_details:
+                print("No expenses recorded yet.")
+            else:
+                print("\n==== HIGHEST EXPENSE ====\n")
+                for expense in expenses_details:
+                    if not highest_expense_details or expense["amount"] > highest_expense:
+                        highest_expense = expense["amount"]
+                        highest_expense_details = expense
+                print(f'ID: {highest_expense_details["id"]}\nAmount: ₹{highest_expense_details["amount"]}\nCategory: {highest_expense_details["category"]}\nDate: {highest_expense_details["date"]}\nDescription: {highest_expense_details["description"]}')
+
+        elif choice == 6:
             print("Thank you for using Expense Tracker!")
             break
 
