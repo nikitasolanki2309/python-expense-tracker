@@ -7,7 +7,8 @@ menu = {
     4: "Category Analysis",
     5: "Highest Expense",
     6: "Lowest Expense",
-    7: "Exit"
+    7: "Search Expenses",
+    8: "Exit"
 }
 
 def expense_tracker():
@@ -103,6 +104,23 @@ def expense_tracker():
                 print(f'ID: {lowest_expense_details["id"]}\nAmount: ₹{lowest_expense_details["amount"]}\nCategory: {lowest_expense_details["category"]}\nDate: {lowest_expense_details["date"]}\nDescription: {lowest_expense_details["description"]}')
 
         elif choice == 7:
+            search_expenses_details = []
+            search = input("Enter a search term: ")
+            if not expenses_details:
+                print("No expenses recorded yet.")
+            else:
+                print("\n==== SEARCH EXPENSE ====\n")
+                for expense in expenses_details:
+                    if search.lower() in expense["category"].lower() or search.lower() in expense["description"].lower():
+                        search_expenses_details.append(expense)
+                if not search_expenses_details:
+                    print("No matching expenses found.")
+                else:
+                    for expense in search_expenses_details:
+                        print(f'ID: {expense["id"]}\nAmount: ₹{expense["amount"]}\nCategory: {expense["category"].capitalize()}\nDate: {expense["date"]}\nDescription: {expense["description"].capitalize()}')
+                        print("---------------------------")
+
+        elif choice == 8:
             print("Thank you for using Expense Tracker!")
             break
 
