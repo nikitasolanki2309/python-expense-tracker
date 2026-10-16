@@ -6,7 +6,8 @@ menu = {
     3: "Total Spending",
     4: "Category Analysis",
     5: "Highest Expense",
-    6: "Exit"
+    6: "Lowest Expense",
+    7: "Exit"
 }
 
 def expense_tracker():
@@ -89,6 +90,19 @@ def expense_tracker():
                 print(f'ID: {highest_expense_details["id"]}\nAmount: ₹{highest_expense_details["amount"]}\nCategory: {highest_expense_details["category"]}\nDate: {highest_expense_details["date"]}\nDescription: {highest_expense_details["description"]}')
 
         elif choice == 6:
+            lowest_expense = 0
+            lowest_expense_details = {}
+            if not expenses_details:
+                print("No expenses recorded yet.")
+            else:
+                print("\n==== LOWEST EXPENSE ====\n")
+                for expense in expenses_details:
+                    if not lowest_expense_details or expense["amount"] < lowest_expense:
+                        lowest_expense = expense["amount"]
+                        lowest_expense_details = expense
+                print(f'ID: {lowest_expense_details["id"]}\nAmount: ₹{lowest_expense_details["amount"]}\nCategory: {lowest_expense_details["category"]}\nDate: {lowest_expense_details["date"]}\nDescription: {lowest_expense_details["description"]}')
+
+        elif choice == 7:
             print("Thank you for using Expense Tracker!")
             break
 
