@@ -131,7 +131,15 @@ def expense_tracker():
                         print("---------------------------")
 
         elif choice == 8:
-            delete = int(input("Enter the ID of expense to delete: "))
+            while True:
+                try:
+                    delete = int(input("Enter the ID of expense to delete: "))
+                    if delete > 0:
+                        break
+                    else:
+                        print("Expense ID must be a positive number.")
+                except ValueError:
+                    print("Invalid input. Please enter a whole number.")
             if not expenses_details:
                 print("No expenses recorded yet.")
             else:
