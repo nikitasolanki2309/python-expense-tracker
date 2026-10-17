@@ -9,7 +9,8 @@ menu = {
     6: "Lowest Expense",
     7: "Search Expenses",
     8: "Delete Expense",
-    9: "Exit"
+    9: "Update Expense",
+    10: "Exit"
 }
 
 def expense_tracker():
@@ -136,6 +137,24 @@ def expense_tracker():
                     print("Expense ID not found.")
 
         elif choice == 9:
+            update = int(input("Enter the ID of expense to update: "))
+            if not expenses_details:
+                print("No expenses recorded yet.")
+            else:
+                print("\n==== EXPENSE UPDATE ====\n")
+                for expense in expenses_details:
+                    if update == expense["id"]:
+                        expense["amount"] = int(input("Enter updated amount: "))
+                        expense["category"] = input("Enter updated category: ")
+                        expense["date"] = input("Enter updated date: ")
+                        expense["description"] = input("Enter updated description: ")
+                        print("\n==== UPDATED EXPENSE ====\n")
+                        print(f'ID: {expense["id"]}\nAmount: ₹{expense["amount"]}\nCategory: {expense["category"].capitalize()}\nDate: {expense["date"]}\nDescription: {expense["description"].capitalize()}')
+                        break
+                else:
+                    print("Expense ID not found.")
+
+        elif choice == 10:
             print("Thank you for using Expense Tracker!")
             break
 
