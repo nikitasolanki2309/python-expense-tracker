@@ -8,7 +8,8 @@ menu = {
     5: "Highest Expense",
     6: "Lowest Expense",
     7: "Search Expenses",
-    8: "Exit"
+    8: "Delete Expense",
+    9: "Exit"
 }
 
 def expense_tracker():
@@ -121,6 +122,20 @@ def expense_tracker():
                         print("---------------------------")
 
         elif choice == 8:
+            delete = int(input("Enter the ID of expense to delete: "))
+            if not expenses_details:
+                print("No expenses recorded yet.")
+            else:
+                print("\n==== EXPENSE DELETION ====\n")
+                for expense in expenses_details:
+                    if delete == expense["id"]:
+                        expenses_details.remove(expense)
+                        print(f"Expense with ID {expense['id']} is deleted successfully.")
+                        break
+                else:
+                    print("Expense ID not found.")
+
+        elif choice == 9:
             print("Thank you for using Expense Tracker!")
             break
 
