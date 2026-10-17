@@ -34,7 +34,15 @@ def expense_tracker():
                 "date": "",
                 "description": ""
             }
-            amount = int(input("Enter amount: "))
+            while True:
+                try:
+                    amount = int(input("Enter amount: "))
+                    if amount > 0:
+                        break
+                    else:
+                        print("Amount must be greater than zero.")
+                except ValueError:
+                    print("Please enter a valid amount.")
             category = input("Enter category: ")
             date = input("Enter date: ")
             description = input("Enter description: ")
