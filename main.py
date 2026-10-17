@@ -153,7 +153,15 @@ def expense_tracker():
                     print("Expense ID not found.")
 
         elif choice == 9:
-            update = int(input("Enter the ID of expense to update: "))
+            while True:
+                try:
+                    update = int(input("Enter the ID of expense to update: "))
+                    if update > 0:
+                        break
+                    else:
+                        print("Expense ID must be a positive number.")
+                except ValueError:
+                    print("Invalid input. Please enter a whole number.")
             if not expenses_details:
                 print("No expenses recorded yet.")
             else:
